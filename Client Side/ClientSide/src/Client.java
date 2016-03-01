@@ -15,7 +15,7 @@ public class Client {
         final String host = "localhost";
         final int port = 1115;
         
-        System.out.println("Опитвам да се свържа със сървъра...");
+        System.out.println("Trying to connect to the server...");
         try {
             connection = new Socket(host, port);
             getResult = new Scanner(connection.getInputStream());
@@ -23,14 +23,14 @@ public class Client {
         catch(IOException e1) {
             e1.printStackTrace();
         }
-        System.out.println("Свързването е успешно!");
+        System.out.println("Connected succesffully!");
         
         while(true) {
             printMenu(connection);
             String result = getResult.nextLine();
             result = result.replaceAll("%", "\n");
             System.out.println(result);
-            System.out.println("Натисни ENTER, за да продължите ... ");
+            System.out.println("Click <ENTER>, to continue... ");
             keyboard.nextLine();
             
         }
@@ -49,14 +49,14 @@ public class Client {
             e.printStackTrace();
         }
         Scanner input = new Scanner(System.in);
-        System.out.println("Меню:");
-        System.out.println("1. Изведи 'досиета' на всичките автомобили.");
-        System.out.println("2. Изведи 'досие' на предварително избран автомобил.");
-        System.out.println("3. Напшете своя заявка.");
-        System.out.println("4. Изход!");
+        System.out.println("Menu:");
+        System.out.println("1. Show information about all the automobiles.");
+        System.out.println("2. Show information about autmobile of your chosing.");
+        System.out.println("3. Write your own query.");
+        System.out.println("4. Exit!");
         
         do {
-            System.out.println("Избор: ");          
+            System.out.println("Choice: ");          
             myChoice = input.nextInt();
             input.nextLine();
         } while((myChoice < 1) && (myChoice > 6));
@@ -68,13 +68,13 @@ public class Client {
                 out.println(str);
                 break;
             } case 2: {
-                System.out.print("Въведи марка на автомобил за търсене: ");
+                System.out.print("Enter automobile make to search for: ");
                 String name = input.nextLine();
                 str = "SELECT Automobile.Make, Automobile.Model, Owners.FName, Owners.LName, Fines.Type, Violations.Type FROM Automobile INNER JOIN Owners ON Automobile.RegNum = Owners.RegNum INNER JOIN Violations ON Owners.OwnerID = Violations.OwnerID INNER JOIN Fines ON Violations.ViolationID = Fines.ViolationID WHERE Automobile.Make = '" + name + "';";
                 out.println(str);
                 break;
             } case 3: {
-                System.out.println("Въведете вашата заявка!");
+                System.out.println("Write your query!");
                 String query = input.nextLine();
                 out.println(query);
                 break;

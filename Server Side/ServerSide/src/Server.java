@@ -14,20 +14,20 @@ public class Server {
         
         Socket connection = null;
         
-        System.out.println("Стартиране на сървъра...");
+        System.out.println("Starting the server...");
         try {
             ss = new ServerSocket(port);
         } catch (IOException e) {
-            System.err.println("Не може да хостна сървъра!");
+            System.err.println("Unable to host the server!");
             e.printStackTrace();
         }
-        System.out.println("Сървърът е стартиран на порт " + port);
+        System.out.println("Server started on port " + port);
         
         try{
             while(true) {
-                System.out.println("Изчакване за връзка...");
+                System.out.println("Waiting for connection...");
                 connection = ss.accept();
-                System.out.println("Свързан е клиент!");
+                System.out.println("Client connected!");
                 User u = new User(connection);
                 users.add(u);
                 u.start();              
