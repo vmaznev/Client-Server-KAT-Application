@@ -51,7 +51,7 @@ public class Client {
         Scanner input = new Scanner(System.in);
         System.out.println("Menu:");
         System.out.println("1. Show information about all the automobiles.");
-        System.out.println("2. Show information about automobile of your chosing.");
+        System.out.println("2. Show information about autmobile of your chosing.");
         System.out.println("3. Write your own query.");
         System.out.println("4. Exit!");
         
